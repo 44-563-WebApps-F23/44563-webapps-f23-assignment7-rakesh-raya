@@ -25,6 +25,23 @@
             reactTime = Date.now();
             console.log(reactTime)
         }
+
+        function startTime() {
+            for (let i = 0; i < 9; i++) {
+                setTimeout(() => {
+                    document.getElementById('counter').innerHTML = i;
+                }, (8 - i) * 1000)
+            }
+            setTimeout(() => {
+                if (reactTime == undefined) {
+                    document.getElementById('target').innerHTML = "Too Slow";
+                } else {
+                    let endTime = Date.now();
+                    let timeDiff = endTime - reactTime;
+                    document.getElementById('target').innerHTML = "Time was " + timeDiff;
+                }
+            }, 8000)
+        }
     </script>
 
 </body>
