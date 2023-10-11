@@ -146,6 +146,9 @@
         let trapLocation = 18;
         let gameOver = false;
         function check(position) {
+            if(gameOver){
+                return;
+            }
             let imageID = ids[position];
             imageElement = document.getElementById(imageID)
             switch (position) {
