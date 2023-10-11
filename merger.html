@@ -1,79 +1,86 @@
 <!DOCTYPE html>
-<html> 
-    <head> 
-        <title>Adding and Removing</title>
+<html>
+
+<head>
+    <title>Adding and Removing</title>
     <style>
-    .flex-container {
-      display: flex;  flex-direction:row;
-      background-color: red;
-  }
+        .flex-container {
+            display: flex;
+            flex-direction: row;
+            background-color: red;
+        }
 
-.flex-container > div {  /*div children of the flex container*/
-  background-color: #f1f1f1; 
-  margin: 10px;  padding: 20px;  font-size: 30px;
-}
+        .flex-container>div {
+            /*div children of the flex container*/
+            background-color: #f1f1f1;
+            margin: 10px;
+            padding: 20px;
+            font-size: 30px;
+        }
 
-/* Responsive layout */
-@media (max-width: 600px) { 
-	 .flex-container{
-		 flex-direction:column;
-		 background-color: green;
-	  }
-	}
-</style></head>
+        /* Responsive layout */
+        @media (max-width: 600px) {
+            .flex-container {
+                flex-direction: column;
+                background-color: green;
+            }
+        }
+    </style>
+</head>
 
 
 
 <body>
     <h2>Rakesh Somanaboina builds a merger</h2>
-    <input type="text" id="inputElement" placeholder="Enter the value">
-		<div class="flex-container" id="target">
-		  <div>row item 1</div>   
-		  <div>row item 2</div>  
-		  <div>row item 3</div>  
-		</div>
-	
-	<p> Press the button to create an new element of type div and then add it to the container.
-		</p>
-		<button onclick="addEnd()">Add end</button>
-        <button onclick="addFront()">Add front</button>
-        <button onclick="remove()">Remove</button>
-	
-	
+    <input type="text" id="inputElement" placeholder="Enter the value"> <br>
+    <div class="flex-container" id="target">
+        <div>row item 1</div>
+        <div>row item 2</div>
+        <div>row item 3</div>
+    </div>
+
+    <p> Press the button to create an new element of type div and then add at end to the container.</p>
+    <button onclick="addEnd()">Add end</button>
+    <p> Press the button to create an new element of type div and then add at front to the container.</p>
+    <button onclick="addFront()">Add front</button>
+    <p> Press the button to create an new element of type div and then remove it from the container.</p>
+    <button onclick="remove()">Remove</button>
+
+
 </body>
 <script>
-	function addEnd(){
+    function addEnd() {
         let input = document.getElementById('inputElement').value;
-		/* make the div and its text */
-		let element = document.createElement("div");
-		element.innerHTML = input;
-		element.className = "merger";
+        /* make the div and its text */
+        let element = document.createElement("div");
+        element.innerHTML = input;
+        element.className = "merger";
+        /* add it to the container */
+        let container = document.getElementById('target')
+        container.appendChild(element)
+    }
 
-		/* add it to the container */
-		let container = document.getElementById('target')
-		container.appendChild(element)
-	}
-
-    function remove(){
-let mergerItems = document.getElementsByClassName("merger");
-let elementsLength = mergerItems.length;
-if(elementsLength > 0) {
-    let middleElement = Math.floor(elementsLength/2);
-    mergerItems[middleElement].remove();
-}
+    function remove() {
+        let mergerItems = document.getElementsByClassName("merger");
+        let elementsLength = mergerItems.length;
+        if (elementsLength > 0) {
+            let middleElement = Math.floor(elementsLength / 2);
+            mergerItems[middleElement].remove();
+        }
     }
 
     function addFront() {
         let input = document.getElementById('inputElement').value;
-		/* make the div and its text */
-		let element = document.createElement("div");
-		element.innerHTML = input;
-		element.className = "merger";
-           /* add it to the container */
-		let container = document.getElementById('target')
-		 firstChild = container.firstChild;
-         container.insertBefore(element, firstChild);
-        }
+        /* make the div and its text */
+        let element = document.createElement("div");
+        element.innerHTML = input;
+        element.className = "merger";
+        /* add it to the container */
+        let container = document.getElementById('target')
+        firstChild = container.firstChild;
+        container.insertBefore(element, firstChild);
+    }
 
 </script>
-</html>	
+
+</html>
