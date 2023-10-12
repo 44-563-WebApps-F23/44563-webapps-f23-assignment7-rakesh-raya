@@ -67,7 +67,7 @@
         <p class="textStyle textcolor2">Click on the locations to search for treasure, beware the traps</p>
         <p class="textStyle textcolor3" id="locations">Number of locations checked is zero.</p>
         <p class="textStyle textcolor4" id="penalty">Penalty is zero.</p>
-        <p class="textStyle textcolor5"  onclick="help()">Click for help.</p>
+        <p class="textStyle textcolor5" onclick="help()">Click for help.</p>
         <p class="textStyle textcolor6" id="help">Help report</p>
     </div>
     <div class="container-fluid">
@@ -132,6 +132,9 @@
                     width="100px" alt="image of treasure map"></div>
         </div>
     </div>
+    <div>
+        <button onclick="newCheck()">New Game Button</button>
+    </div>
     <script>
         let ids = ["img0", "img1", "img2", "img3", "img4", "img5",
             "img6", "img7", "img8", "img9", "img10",
@@ -146,7 +149,7 @@
         let trapLocation = 18;
         let gameOver = false;
         function check(position) {
-            if(gameOver){
+            if (gameOver) {
                 return;
             }
             let imageID = ids[position];
@@ -183,15 +186,45 @@
             let rowDiff = Math.abs(lastCheckRow - treasureRow);
             let colDiff = Math.abs(lastCheckCol - treasureCol);
             helpElement = document.getElementById("help");
-            if ( (rowDiff == 1 && colDiff == 0) || (colDiff == 1 && rowDiff == 0)) {
+            if ((rowDiff == 1 && colDiff == 0) || (colDiff == 1 && rowDiff == 0)) {
                 helpElement.innerHTML = "Can Smell It";
-            }else if (rowDiff + colDiff == 2) {
+            } else if (rowDiff + colDiff == 2) {
                 helpElement.innerHTML = "Close Matie";
-            }else{
+            } else {
                 helpElement.innerHTML = "Step Faster";
             }
-         penalty += 2;
-         penaltyElement.innerHTML = "The penalty is :" + penalty;
+            penalty += 2;
+            penaltyElement.innerHTML = "The penalty is :" + penalty;
+        }
+
+        function newCheck() {
+            checkCount = 0;
+            penalty = 0;
+            lastCheck = 0;
+            gameOver = false;
+            treasureLocation = Math.floor(Math.random() * 25);
+            trapLocation = Math.floor(Math.random() * 25);
+            for (let i = 0; i < 24; i++) {
+                if (i == treasureLocation) {
+                    imageElement = document.getElementById(ids[i]);
+                    imageElement.src = "images/treasure.jpg";
+                }
+                else if (i == trapLocation) {
+                    imageElement = document.getElementById(ids[i]);
+                    imageElement.src = "images/trap.jpg";
+                }
+                else {
+                    imageElement = document.getElementById(ids[i]);
+                    imageElement.src = "images/piratebones.jpg";
+                }
+
+            }
+        let locationElement = document.getElementById("locations")
+        locationElement.innerText = "Number of locations checked is " + checkCount;
+        let penaltyElement = document.getElementById("penalty")
+        penaltyElement.innerText = "Penalty is " + penalty;
+        let helpElement = document.getElementById("help")
+        helpElement.innerText = "Help report";
         }
     </script>
 </body>
